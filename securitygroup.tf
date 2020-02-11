@@ -36,7 +36,8 @@ resource "aws_security_group" "rds-sg" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+#    cidr_blocks = ["0.0.0.0/0"] incase if you struggle to access RDS, remove below line and uncomment this line.
+	security_groups = [aws_security_group.public-sg.id] # allowing access from our example instance
   }
   tags = {
     Name = "my-rds-sg"

@@ -1,3 +1,4 @@
+#Version of the terraform
 terraform {
   required_version = ">= 0.12"
 }
@@ -7,11 +8,6 @@ provider "aws" {
   region = var.AWS_REGION
 }
 
-#AWS Keypair to connect to aws
-resource "aws_key_pair" "mykeypair" {
-  key_name   = "mykeypair"
-  public_key = file(var.PATH_TO_PUBLIC_KEY)
-}
 
 
 # Define VPC
@@ -60,10 +56,10 @@ resource "aws_subnet" "main-private-2" {
   }
 }
 
-resource "aws_db_subnet_group" "my-rds-db-subnet" {
-  name       = "my-rds-db-subnet"
-  subnet_ids = [aws_subnet.main-private-1.id,aws_subnet.main-private-2.id]
-}
+#resource "aws_db_subnet_group" "my-rds-db-subnet" {
+#  name       = "my-rds-db-subnet"
+#  subnet_ids = [aws_subnet.main-private-1.id,aws_subnet.main-private-2.id]
+#}
 
 
 # Internet GW
@@ -93,3 +89,10 @@ resource "aws_route_table_association" "main-public-1-a" {
   subnet_id      = aws_subnet.main-public-1.id
   route_table_id = aws_route_table.main-public.id
 }
+
+#AWS Keypair to connect to aws ec2
+resource "aws_key_pair" "mykeypair" {
+  key_name   = "mykeypair"
+  public_key = file(var.PATH_TO_PUBLIC_KEY)
+}
+

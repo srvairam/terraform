@@ -23,7 +23,7 @@ variable "AWS_AZ2" {
 variable "AMIS" {
   type = map(string)
   default = {
-    us-east-1 = "ami-062f7200baf2fa504 "
+    us-east-1 = "ami-062f7200baf2fa504"
     us-west-2 = "ami-04590e7389a6e577c"    
   }
 }
@@ -37,16 +37,12 @@ variable "DB_INSTANCE_CLASS" {
   default = "db.t2.micro"
 }
 
-variable "RDS_PASSWORD" {
-  default = "admin123"
+variable "PUB_CIDR" {
+  default = "10.0.1.0/24"
 }
 
 variable "VPC_CIDR" {
   default = "10.0.0.0/16"
-}
-
-variable "PUB_CIDR" {
-  default = "10.0.1.0/24"
 }
 
 variable "PVT_CIDR" {
@@ -54,8 +50,11 @@ variable "PVT_CIDR" {
   default = "10.0.4.0/24"
 }
 
-
 variable "PVT2_CIDR" {
   
   default = "10.0.5.0/24"
+}
+
+variable "dummy" {
+    default = "dummy"
 }
